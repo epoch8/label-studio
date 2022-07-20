@@ -1,6 +1,6 @@
 {
-  "message": "fix: DEV-2977: Locked polygons",
-  "commit": "22839e5dc5c4fdc15f51dcf351c8a3c0a0951d4e",
-  "branch": "master",
-  "date": "2022/07/29 11:01:07"
+  "message": "feat: DEV-2755: Regions list grouped by labels with persistent & ordered collapse",
+  "commit": "b5dfbf430a5f9167c8a4f613b6b731b1d5c2f31c",
+  "branch": "fb-dev-2755",
+  "date": "2022/07/20 10:01:56"
 }
