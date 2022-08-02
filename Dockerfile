@@ -64,6 +64,8 @@ RUN python3 label_studio/manage.py collectstatic --no-input && \
     chown -R 1001:0 $LS_DIR && \
     chmod -R g=u $LS_DIR
 
+USER 1011
+
 EXPOSE 8080
 
 ENTRYPOINT ["./deploy/docker-entrypoint.sh"]
