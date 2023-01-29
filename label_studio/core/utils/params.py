@@ -53,6 +53,21 @@ def int_from_request(params, key, default):
         raise ValueError(f'Incorrect value type in key "{key}" = "{value}". It should be digit string or integer.')
 
 
+def cast_int_from_str(value):
+    # str
+    if isinstance(value, str):
+        try:
+            return int(value)
+        except ValueError:
+            raise ValueError(f'Incorrect int value "{value}". It should be digit string.')
+    # int
+    elif isinstance(value, int):
+        return value
+    # other
+    else:
+        raise ValueError(f'Incorrect int value "{value}". It should be digit string or integer.')
+
+
 def float_from_request(params, key, default):
     """ Get float from request GET, POST, etc
 
@@ -112,6 +127,10 @@ def get_env(name, default=None, is_bool=False):
 
 def get_bool_env(key, default):
     return get_env(key, default, is_bool=True)
+
+
+def get_int_env(key, default):
+    return cast_int_from_str(get_env(key, default))
 
 
 def get_env_list_int(key, default=None):
