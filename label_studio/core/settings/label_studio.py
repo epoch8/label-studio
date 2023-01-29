@@ -4,6 +4,7 @@ import os
 import pathlib
 
 from core.settings.base import *
+from label_studio.core.utils.params import get_int_env
 
 DJANGO_DB = get_env('DJANGO_DB', DJANGO_DB_SQLITE)
 DATABASES = {'default': DATABASES_ALL[DJANGO_DB]}
@@ -25,7 +26,37 @@ SESSION_COOKIE_SECURE = get_bool_env('SESSION_COOKIE_SECURE', False)
 
 SESSION_ENGINE = "django.contrib.sessions.backends.signed_cookies"
 
-RQ_QUEUES = {}
+REDIS_HOST = get_env("REDIS_HOST")
+
+if REDIS_HOST:
+    RQ_QUEUES = {
+        'critical': {
+            'HOST': get_env("REDIS_HOST"),
+            'PORT': get_int_env("REDIS_PORT", 6379),
+            'DB': get_int_env("REDIS_DB", 0),
+            'DEFAULT_TIMEOUT': get_int_env("RQ_WORKER_TIMEOUT", 600),
+        },
+        'high': {
+            'HOST': get_env("REDIS_HOST"),
+            'PORT': get_int_env("REDIS_PORT", 6379),
+            'DB': get_int_env("REDIS_DB", 0),
+            'DEFAULT_TIMEOUT': get_int_env("RQ_WORKER_TIMEOUT", 600),
+        },
+        'default': {
+            'HOST': get_env("REDIS_HOST"),
+            'PORT': get_int_env("REDIS_PORT", 6379),
+            'DB': get_int_env("REDIS_DB", 0),
+            'DEFAULT_TIMEOUT': get_int_env("RQ_WORKER_TIMEOUT", 600),
+        },
+        'low': {
+            'HOST': get_env("REDIS_HOST"),
+            'PORT': get_int_env("REDIS_PORT", 6379),
+            'DB': get_int_env("REDIS_DB", 0),
+            'DEFAULT_TIMEOUT': get_int_env("RQ_WORKER_TIMEOUT", 600),
+        },
+    }
+else:
+    RQ_QUEUES = {}
 
 SENTRY_DSN = get_env(
     'SENTRY_DSN',
