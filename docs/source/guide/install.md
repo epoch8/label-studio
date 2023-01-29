@@ -231,6 +231,7 @@ If you customized the Label Studio Frontend, see the [Frontend reference guide](
 * `REDIS_HOST`
 * `REDIS_PORT` (default: 6379)
 * `REDIS_DB` (default: 0)
+* `RQ_WORKER_TIMEOUT` (default: 600)
 
 If `REDIS_HOST` is not defined, Label Studio runs background tasks (for example counters update on tasks import) synchronously. For large projects it might lead to degraded performance.
 

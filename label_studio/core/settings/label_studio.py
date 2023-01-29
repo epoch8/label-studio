@@ -34,25 +34,25 @@ if REDIS_HOST:
             'HOST': get_env("REDIS_HOST"),
             'PORT': get_int_env("REDIS_PORT", 6379),
             'DB': get_int_env("REDIS_DB", 0),
-            'DEFAULT_TIMEOUT': 180,
+            'DEFAULT_TIMEOUT': get_int_env("RQ_WORKER_TIMEOUT", 600),
         },
         'high': {
             'HOST': get_env("REDIS_HOST"),
             'PORT': get_int_env("REDIS_PORT", 6379),
             'DB': get_int_env("REDIS_DB", 0),
-            'DEFAULT_TIMEOUT': 180,
+            'DEFAULT_TIMEOUT': get_int_env("RQ_WORKER_TIMEOUT", 600),
         },
         'default': {
             'HOST': get_env("REDIS_HOST"),
             'PORT': get_int_env("REDIS_PORT", 6379),
             'DB': get_int_env("REDIS_DB", 0),
-            'DEFAULT_TIMEOUT': 180,
+            'DEFAULT_TIMEOUT': get_int_env("RQ_WORKER_TIMEOUT", 600),
         },
         'low': {
             'HOST': get_env("REDIS_HOST"),
             'PORT': get_int_env("REDIS_PORT", 6379),
             'DB': get_int_env("REDIS_DB", 0),
-            'DEFAULT_TIMEOUT': 180,
+            'DEFAULT_TIMEOUT': get_int_env("RQ_WORKER_TIMEOUT", 600),
         },
     }
 else:
