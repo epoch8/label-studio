@@ -224,6 +224,16 @@ The most important change to be aware of is changes to rename "completions" to "
 
 If you customized the Label Studio Frontend, see the [Frontend reference guide](frontend_reference.html) for required updates to maintain compatibility with version 1.0.0.
 
+## Environment variables
+
+### RQ
+
+* `REDIS_HOST`
+* `REDIS_PORT` (default: 6379)
+* `REDIS_DB` (default: 0)
+
+If `REDIS_HOST` is not defined, Label Studio runs background tasks (for example counters update on tasks import) synchronously. For large projects it might lead to degraded performance.
+
 ## Troubleshoot installation
 
 You might see errors when installing Label Studio. Follow these steps to resolve them.
