@@ -33,3 +33,12 @@ frontend-build:
 # Run tests
 test:
 	cd label_studio && DJANGO_DB=sqlite pytest -v -m "not integration_tests"
+
+IMAGE=ghcr.io/epoch8/label-studio/label-studio
+IMAGE_TAG=$(shell git describe --tags --abbrev=0)
+
+build-docker:
+	docker build -t ${IMAGE}:${IMAGE_TAG} .
+
+upload-docker:
+	docker push ${IMAGE}:${IMAGE_TAG}
