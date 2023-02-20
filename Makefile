@@ -41,3 +41,12 @@ test:
 # Update urls
 update-urls:
 	DJANGO_DB=sqlite LOG_DIR=tmp DEBUG=true LOG_LEVEL=DEBUG DJANGO_SETTINGS_MODULE=core.settings.label_studio python label_studio/manage.py show_urls --format pretty-json > ./label_studio/core/all_urls.json
+
+IMAGE=ghcr.io/epoch8/label-studio/label-studio
+IMAGE_TAG=$(shell git describe --tags --abbrev=0)
+
+build-docker:
+	docker build -t ${IMAGE}:${IMAGE_TAG} .
+
+upload-docker:
+	docker push ${IMAGE}:${IMAGE_TAG}
