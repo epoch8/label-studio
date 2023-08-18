@@ -26,32 +26,24 @@ SESSION_COOKIE_SECURE = get_bool_env('SESSION_COOKIE_SECURE', False)
 
 SESSION_ENGINE = "django.contrib.sessions.backends.signed_cookies"
 
-REDIS_HOST = get_env("REDIS_HOST")
+REDIS_LOCATION = get_env("REDIS_LOCATION")
 
-if REDIS_HOST:
+if REDIS_LOCATION:
     RQ_QUEUES = {
         'critical': {
-            'HOST': get_env("REDIS_HOST"),
-            'PORT': get_int_env("REDIS_PORT", 6379),
-            'DB': get_int_env("REDIS_DB", 0),
+            'URL': REDIS_LOCATION,
             'DEFAULT_TIMEOUT': get_int_env("RQ_WORKER_TIMEOUT", 600),
         },
         'high': {
-            'HOST': get_env("REDIS_HOST"),
-            'PORT': get_int_env("REDIS_PORT", 6379),
-            'DB': get_int_env("REDIS_DB", 0),
+            'URL': REDIS_LOCATION,
             'DEFAULT_TIMEOUT': get_int_env("RQ_WORKER_TIMEOUT", 600),
         },
         'default': {
-            'HOST': get_env("REDIS_HOST"),
-            'PORT': get_int_env("REDIS_PORT", 6379),
-            'DB': get_int_env("REDIS_DB", 0),
+            'URL': REDIS_LOCATION,
             'DEFAULT_TIMEOUT': get_int_env("RQ_WORKER_TIMEOUT", 600),
         },
         'low': {
-            'HOST': get_env("REDIS_HOST"),
-            'PORT': get_int_env("REDIS_PORT", 6379),
-            'DB': get_int_env("REDIS_DB", 0),
+            'URL': REDIS_LOCATION,
             'DEFAULT_TIMEOUT': get_int_env("RQ_WORKER_TIMEOUT", 600),
         },
     }
